@@ -2,9 +2,9 @@ package it.peluso.ecommerce.repository;
 
 import java.util.List;
 import org.springframework.data.mongodb.repository.MongoRepository;
-import it.peluso.ecommerce.model.Product;
+import it.peluso.ecommerce.dto.ProductDTO;
 
-public interface ProductRepository extends MongoRepository<Product, String> {
-	  List<Product> findByNome(String nome);
-	  List<Product> findByDescrizione(String descrizione);
+public interface ProductRepository extends MongoRepository<ProductDTO, String> {
+	  List<ProductDTO> findByName(String name);
+	  List<ProductDTO> findByDescription(String description);
 }
