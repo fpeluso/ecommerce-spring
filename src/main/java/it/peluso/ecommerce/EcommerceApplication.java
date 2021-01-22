@@ -33,7 +33,11 @@ public class EcommerceApplication {
 
 		};
 	}
-	
+
+	public void nonFaNiente() {
+		System.out.println("non faccio niente");
+	}
+
 	@Bean
 	public CorsFilter corsFilter() {
 	    final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
