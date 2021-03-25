@@ -15,10 +15,4 @@ public class GetTest {
     public ResponseEntity<String> helloWorld(@RequestParam(required = false) String nome) {
         return new ResponseEntity<>("Hello " + (nome != null ? nome : "world") + "!", HttpStatus.OK);
     }
-
-    @RequestMapping("home")
-    @ResponseBody
-    public String home() {
-        return "Hello World!";
-    }
 }
