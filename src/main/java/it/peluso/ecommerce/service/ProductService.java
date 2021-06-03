@@ -1,23 +1,17 @@
 package it.peluso.ecommerce.service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
+import it.peluso.ecommerce.dto.ProductDTO;
 import it.peluso.ecommerce.exception.DataValidationException;
+import it.peluso.ecommerce.repository.ProductRepository;
 import it.peluso.ecommerce.util.ProductUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
-import it.peluso.ecommerce.dto.ProductDTO;
-import it.peluso.ecommerce.repository.ProductRepository;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductService {
@@ -53,8 +47,8 @@ public class ProductService {
     public ResponseEntity<ProductDTO> createProduct(ProductDTO product) {
         try {
             ProductDTO newProduct;
-            if(ProductUtil.isProductDataValid(product)) {
-                if(ProductUtil.productHasQuantity(product)) {
+            if (ProductUtil.isProductDataValid(product)) {
+                if (ProductUtil.productHasQuantity(product)) {
                     newProduct = new ProductDTO(product.getName(), product.getDescription(), product.getPrice(), product.getQuantity());
                 } else {
                     newProduct = new ProductDTO(product.getName(), product.getDescription(), product.getPrice());
@@ -66,7 +60,7 @@ public class ProductService {
             }
         } catch (DataValidationException dve) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-        }catch (Exception e) {
+        } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -79,7 +73,7 @@ public class ProductService {
             _product.setName(product.getName());
             _product.setDescription(product.getDescription());
             _product.setPrice(product.getPrice());
-            if(product.getQuantity() != null) {
+            if (product.getQuantity() != null) {
                 _product.setQuantity(product.getQuantity());
             }
             return new ResponseEntity<>(productRepository.save(_product), HttpStatus.OK);
